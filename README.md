@@ -8,11 +8,11 @@ Gestion de gimnasio
   - Estadisticas
   - Clases
   
-![](https://github.com/MulDeveloper/GymBackoffice/blob/main/stats.png?raw=true | width=700)
+![](https://github.com/MulDeveloper/GymBackoffice/blob/main/stats.png?raw=true)
 
-![](https://github.com/MulDeveloper/GymBackoffice/blob/main/widg.png?raw=true | width=700)
+![](https://github.com/MulDeveloper/GymBackoffice/blob/main/widg.png?raw=true)
  
-![](https://github.com/MulDeveloper/GymBackoffice/blob/main/listpersonal.png?raw=true | width=700)
+![](https://github.com/MulDeveloper/GymBackoffice/blob/main/listpersonal.png?raw=true)
  
-![](https://github.com/MulDeveloper/GymBackoffice/blob/main/altapersonal.png?raw=true | width=700)
+![](https://github.com/MulDeveloper/GymBackoffice/blob/main/altapersonal.png?raw=true)
 
