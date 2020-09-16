@@ -1,6 +1,6 @@
 # GymBackoffice (En proceso)
 
-## Gestion de gimnasio
+## Gestion de gimnasio (Spring Boot + Angular)
 
   - Personal
   - Clientes
