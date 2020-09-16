@@ -1,6 +1,6 @@
-GymBackoffice (En proceso)
+#GymBackoffice (En proceso)
 
-Gestion de gimnasio
+##Gestion de gimnasio
 
   - Personal
   - Clientes
