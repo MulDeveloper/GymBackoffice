@@ -1,12 +1,13 @@
-# GymBackoffice (En proceso)
+# GymBackoffice (WIP)
 
-## Gestion de gimnasio (Spring Boot + Angular)
+## Gym Backoffice management (Spring Boot + Angular)
 
-  - Personal
-  - Clientes
-  - Incidencias
-  - Estadisticas
-  - Clases
+
+  - Staff
+  - Clients
+  - Reports
+  - Stats
+  - Classes
   
 ![](https://github.com/MulDeveloper/GymBackoffice/blob/main/stats.png?raw=true)
 
