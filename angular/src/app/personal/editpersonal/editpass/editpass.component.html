@@ -1,0 +1,52 @@
+<app-menu></app-menu>
+<body>
+    <div class="dashboard-wrapper">
+        <div class="container-fluid dashboard-content">
+                <div class="row">
+                    <div class="col-xl-10">
+                        <div class="page-section" id="overview">
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h2>Modificar credenciales acceso</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- form basico -->
+                        <!-- ============================================================== -->
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="card">
+                                    <h5 class="card-header">Password personal</h5>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Password actual</label>
+                                                <input id="inputText3" type="text" class="form-control" [(ngModel)]="passActual" name="passActual" #nombre="ngModel" [ngModelOptions]="{standalone: true}" required>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Password nueva</label>
+                                                <input id="inputText3" type="text" class="form-control" [(ngModel)]="passNueva" name="passNueva" #nombre="ngModel" [ngModelOptions]="{standalone: true}" required>
+
+                                            </div>
+                                            <button class="btn btn-rounded btn-success form-btn" (click)="mod()">Modificar</button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end footer -->
+            <!-- ============================================================== -->
+        </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+</body>

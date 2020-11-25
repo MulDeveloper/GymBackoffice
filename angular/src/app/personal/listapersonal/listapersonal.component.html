@@ -1,0 +1,203 @@
+<app-menu></app-menu>
+<body>
+        <div class="dashboard-wrapper">
+            <div class="container-fluid  dashboard-content">
+                <!-- ============================================================== -->
+                <!-- pageheader -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h2 class="pageheader-title">Personal activo</h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end pageheader -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- ============================================================== -->
+                    <!-- basic table  -->
+                    <!-- ============================================================== -->
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <h5 class="card-header">Listado</h5>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered first">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nombre</th>
+                                                <th>NIF</th>
+                                                <th>Funcion</th>
+                                                <th>Email</th>
+                                                <th>Edad</th>
+                                                <th>Fecha alta</th>
+                                                <th>Sueldo</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let personal of listaPersonal">
+                                                <td>{{personal.idpersonal}}</td>
+                                                <td>{{personal.nombrePersonal}}</td>
+                                                <td>{{personal.nifPersonal}}</td>
+                                                <td>{{personal.rol}}</td>
+                                                <td>{{personal.emailPersonal}}</td>
+                                                <td>{{CalculateAge(personal.fechaNacimiento)}}</td>
+                                                <td>{{personal.fechaAlta}}</td>
+                                                <td>{{personal.sueldoBruto}}€</td>
+                                                <td class="tdAction">
+                                                  <button type="button" name="button" class="btn btn-info " (click)="showModal(showProfile, personal)"><i class="fas fa-eye"></i></button>
+                                                  <button type="button" name="button" class="btn btn-warning ml-2" (click)="showModalEdit(editProfile, personal)"><i class="fas fa-pencil-alt"></i></button>
+                                                  <button type="button" name="button" class="btn btn-danger ml-2" (click)="delete(personal.idpersonal, personal.nombrePersonal)"><i class="fas fa-times-circle"></i></button>                                                </td>
+                                            </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+            <ng-template #showProfile let-modal>
+             <div class="modal-header">
+              <h5 class="modal-title" id="showProfile">Datos personal</h5>
+              <button type="button" class="close" (click)="modal.dismiss()" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+              </button>
+             </div>
+
+             <div class="modal-body">
+              <form [formGroup]="showProfileGroup">
+               <div class="form-group row">
+                <label for="nombrePersonal" class="col-sm-4 col-form-label">Nombre y apellido</label>
+                <div class="col-sm-8">
+                 <input type="text" class="form-control" readonly formControlName="nombrePersonal" id="nombrePersonal">
+                </div>
+               </div>
+               <div class="form-group row">
+                <label for="nifPersonal" class="col-sm-4 col-form-label">NIF</label>
+                <div class="col-sm-8">
+                 <input type="text" class="form-control" readonly formControlName="nifPersonal" id="nifPersonal">
+                </div>
+               </div>
+               <div class="form-group row">
+                <label for="direccion" class="col-sm-4 col-form-label">Direccion</label>
+                <div class="col-sm-8">
+                 <input type="text" class="form-control" readonly formControlName="direccion" id="direccion">
+                </div>
+               </div>
+               <div class="form-group row">
+                <label for="rol" class="col-sm-4 col-form-label">ROL</label>
+                <div class="col-sm-8">
+                 <input type="text" class="form-control" readonly formControlName="rol" id="rol">
+                </div>
+               </div>
+               <div class="form-group row">
+                <label for="email" class="col-sm-4 col-form-label">Email</label>
+                <div class="col-sm-8">
+                 <input type="email" class="form-control" readonly formControlName="email" id="email">
+                </div>
+               </div>
+               <div class="form-group row">
+                <label for="sueldo" class="col-sm-4 col-form-label">Sueldo bruto</label>
+                <div class="col-sm-8">
+                 <input type="text" class="form-control" readonly formControlName="sueldo" id="sueldo">
+                </div>
+               </div>
+               <div class="form-group row">
+                <label for="fechaNac" class="col-sm-4 col-form-label">Fecha de nacimiento:</label>
+                <div class="col-sm-8">
+                 <input type="text" class="form-control" readonly formControlName="fechaNac" id="fechaNac">
+                </div>
+               </div>
+              </form>
+             </div>
+            </ng-template>
+
+            <ng-template #editProfile let-modal>
+             <div class="modal-header">
+              <h5 class="modal-title" id="editProfile">Datos personal</h5>
+              <button type="button" class="close" (click)="modal.dismiss()" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+              </button>
+             </div>
+
+             <div class="modal-body">
+              <form [formGroup]="editProfileGroup" (ngSubmit)="onSubmit()">
+                <input type="hidden" class="form-control" readonly formControlName="idpersonal" id="idPersonal">
+               <div class="form-group row">
+                <label for="nombrePersonal" class="col-sm-4 col-form-label">Nombre</label>
+                <div class="col-sm-8">
+                 <input type="text" class="form-control" formControlName="nombrePersonal" id="nombrePersonal">
+                </div>
+               </div>
+               <div class="form-group row">
+                <label for="nombrePersonal" class="col-sm-4 col-form-label">Apellidos</label>
+                <div class="col-sm-8">
+                 <input type="text" class="form-control" formControlName="apellidoPersonal" id="apellidoPersonal">
+                </div>
+               </div>
+               <div class="form-group row">
+                <label for="nifPersonal" class="col-sm-4 col-form-label">NIF</label>
+                <div class="col-sm-8">
+                 <input type="text" class="form-control" readonly formControlName="nifPersonal" id="nifPersonal">
+                </div>
+               </div>
+               <div class="form-group row">
+                <label for="direccionPersonal" class="col-sm-4 col-form-label">Direccion</label>
+                <div class="col-sm-8">
+                 <input type="text" class="form-control" formControlName="direccionPersonal" id="direccionPersonal">
+                </div>
+               </div>
+               <div class="form-group row">
+                <label for="fechaNac" class="col-sm-4 col-form-label">Fecha de nacimiento:</label>
+                <div class="col-sm-8">
+                 <input type="text" class="form-control" readonly formControlName="fechaNacimiento" id="fechaNacimiento">
+                </div>
+               </div>
+               <div class="form-group row">
+                <label for="rol" class="col-sm-4 col-form-label">ROL</label>
+                <div class="col-sm-8">
+                  <select class="form-control" id="input-select"
+                  formControlName="rol" id="rol">
+                      <option value="MONITOR">MONITOR/A</option>
+                      <option value="MANT">MANTENIMIENTO</option>
+                      <option value="GESTION">GESTION</option>
+                      <option value="TRAINER">ENTRENADOR/A PERSONAL</option>
+                  </select>
+                  </div>
+               </div>
+               <div class="form-group row">
+                <label for="emailPersonal" class="col-sm-4 col-form-label">Email</label>
+                <div class="col-sm-8">
+                 <input type="email" class="form-control" formControlName="emailPersonal" id="emailPersonal">
+                </div>
+               </div>
+               <div class="form-group row">
+                <label for="sueldoBruto" class="col-sm-4 col-form-label">Sueldo bruto</label>
+                <div class="col-sm-8">
+                 <input type="number" class="form-control" formControlName="sueldoBruto" id="sueldoBruto">
+                </div>
+               </div>
+               <div class="form-group row">
+                <label for="fechaNac" class="col-sm-4 col-form-label">Fecha de alta:</label>
+                <div class="col-sm-8">
+                 <input type="date" class="form-control" formControlName="fechaAlta" id="fechaAlta">
+                </div>
+               </div>
+
+               <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+               </div>
+
+              </form>
+             </div>
+            </ng-template>
+
+</body>
