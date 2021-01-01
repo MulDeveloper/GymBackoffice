@@ -1,4 +1,4 @@
-package dev.muldev.appgestiongym.Clients.Domain;
+package dev.muldev.appgestiongym.clients.domain;
 
 
 import lombok.AllArgsConstructor;

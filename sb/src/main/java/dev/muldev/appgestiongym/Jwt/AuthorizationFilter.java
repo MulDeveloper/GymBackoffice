@@ -1,4 +1,4 @@
-package dev.muldev.appgestiongym.Jwt;
+package dev.muldev.appgestiongym.jwt;
 
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.AuthenticationManager;

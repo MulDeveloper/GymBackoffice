@@ -1,9 +1,9 @@
 
-package dev.muldev.appgestiongym.Security;
+package dev.muldev.appgestiongym.security;
 
 
-import dev.muldev.appgestiongym.Jwt.AuthenticationFilter;
-import dev.muldev.appgestiongym.Jwt.AuthorizationFilter;
+import dev.muldev.appgestiongym.jwt.AuthenticationFilter;
+import dev.muldev.appgestiongym.jwt.AuthorizationFilter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,9 +16,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -39,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/login", "/api/add/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .anyRequest().authenticated()
                 .and().addFilter(new AuthenticationFilter(authenticationManager()))
                 .addFilter(new AuthorizationFilter(authenticationManager()))

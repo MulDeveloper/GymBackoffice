@@ -1,5 +1,5 @@
 
-package dev.muldev.appgestiongym.Clients.Domain;
+package dev.muldev.appgestiongym.clients.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,6 +17,6 @@ public class ClientMembership implements Serializable{
     private String tarifa;
     private Date fecha;
     private int telefono;
-    private boolean status;
+    private Date fechaAbonadoHasta;
     
 }

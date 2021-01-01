@@ -1,0 +1,41 @@
+<app-menu></app-menu>
+<body>
+        <div class="dashboard-wrapper">
+            <div class="dashboard-ecommerce">
+                <div class="container-fluid dashboard-content ">
+                    <!-- ============================================================== -->
+                    <!-- pageheader  -->
+                    <!-- ============================================================== -->
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="page-header">
+                                <h2 class="pageheader-title">Estadisticas clases </h2>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="row">
+                          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                              <div class="card">
+                                  <h5 class="card-header">Clases mas populares</h5>
+                                  <div class="card-body">
+                                    <div style="display: block;">
+                                      <canvas baseChart
+                                        [data]="pieChartData"
+                                        [labels]="pieChartLabels"
+                                        [chartType]="pieChartType"
+                                        [options]="pieChartOptions"
+                                        [plugins]="pieChartPlugins"
+                                        [legend]="pieChartLegend">
+                                      </canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+</body>

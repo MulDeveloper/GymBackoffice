@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "assets/vendor/bootstrap/css/bootstrap.min.css";
+@import "assets/vendor/datatables/css/select.bootstrap4.css";
+@import "assets/vendor/datatables/css/dataTables.bootstrap4.css";
 @import "assets/libs/css/style.css";
 @import "assets/vendor/fonts/fontawesome/css/fontawesome-all.css";
 @import "assets/vendor/fonts/circular-std/style.css";
+@import "assets/vendor/full-calendar/css/fullcalendar.css";
+@import "assets/vendor/full-calendar/css/fullcalendar.print.css";
+@import "../node_modules/angular-calendar/css/angular-calendar.css";

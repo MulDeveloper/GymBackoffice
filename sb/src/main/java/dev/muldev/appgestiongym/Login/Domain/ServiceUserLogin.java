@@ -1,4 +1,4 @@
-package dev.muldev.appgestiongym.Login.Domain;
+package dev.muldev.appgestiongym.login.domain;
 
 public interface ServiceUserLogin {
     void add(UserLogin u);

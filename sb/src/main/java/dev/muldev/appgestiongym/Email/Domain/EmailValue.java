@@ -1,4 +1,4 @@
-package dev.muldev.appgestiongym.Email.Domain;
+package dev.muldev.appgestiongym.email.domain;
 
 public class EmailValue {
 

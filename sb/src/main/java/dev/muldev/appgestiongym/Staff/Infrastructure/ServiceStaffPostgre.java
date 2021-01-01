@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.muldev.appgestiongym.Staff.Infrastructure;
+package dev.muldev.appgestiongym.staff.infrastructure;
 
-import dev.muldev.appgestiongym.Staff.Domain.ServiceStaff;
-import dev.muldev.appgestiongym.Staff.Domain.Staff;
+import dev.muldev.appgestiongym.staff.domain.ServiceStaff;
+import dev.muldev.appgestiongym.staff.domain.Staff;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -113,8 +113,22 @@ public final class ServiceStaffPostgre implements ServiceStaff {
 
     }
 
+    @Override
+    public List<Staff> getStaffWithRole(String role) {
+        try {
+            Query q = em.createNamedQuery("PersonalGym.findByRol").setParameter("rol", role);
+            List<StaffEntity> listEntity = q.getResultList();
+            ModelMapper modelMapper = new ModelMapper();
+            List<Staff> listDomain = new ArrayList<>();
+            for (StaffEntity entity : listEntity){
+                listDomain.add(new ModelMapper().map(entity, Staff.class));
+            }
+            return listDomain;
+        }
+        catch(NoResultException e){
+            return null;
+        }
+    }
 
-    
-   
-    
+
 }

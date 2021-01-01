@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.muldev.appgestiongym.Staff.Domain;
+package dev.muldev.appgestiongym.staff.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

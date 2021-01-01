@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.muldev.appgestiongym.Prices.Infrastructure.Entities;
+package dev.muldev.appgestiongym.prices.infrastructure.Entities;
 
 import lombok.Data;
 

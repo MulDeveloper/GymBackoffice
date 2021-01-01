@@ -1,0 +1,84 @@
+<app-menu></app-menu>
+<body>
+        <div class="dashboard-wrapper">
+            <div class="dashboard-ecommerce">
+                <div class="container-fluid dashboard-content ">
+                    <!-- ============================================================== -->
+                    <!-- pageheader  -->
+                    <!-- ============================================================== -->
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="page-header">
+                                <h2 class="pageheader-title">Estadisticas gimnasio </h2>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="row">
+
+                            <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
+                                <div class="card">
+                                    <h5 class="card-header">Altas por edades</h5>
+                                    <div class="card-body">
+                                      <div style="display: block;">
+                                        <canvas baseChart
+                                          [data]="pieChartRanges"
+                                          [labels]="pieChartLabelsRanges"
+                                          [chartType]="pieChartType"
+                                          [options]="pieChartOptions"
+                                          [plugins]="pieChartPlugins"
+                                          [legend]="pieChartLegend">
+                                        </canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
+                                <div class="card">
+                                    <h5 class="card-header">Altas por tarifas</h5>
+                                    <div class="card-body">
+                                      <div style="display: block;">
+                                        <canvas baseChart
+                                          [data]="pieChartData"
+                                          [labels]="pieChartLabels"
+                                          [chartType]="pieChartType"
+                                          [options]="pieChartOptions"
+                                          [plugins]="pieChartPlugins"
+                                          [legend]="pieChartLegend">
+                                        </canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
+                                <div class="card">
+                                    <h5 class="card-header">Clientes totales</h5>
+                                    <div class="card-body">
+                                      <div style="display: block;">
+                                        <canvas baseChart width="400" height="300"
+                                          [datasets]="lineChartData"
+                                          [labels]="lineChartLabels"
+                                          [options]="lineChartOptions"
+                                          [colors]="lineChartColors"
+                                          [legend]="lineChartLegend"
+                                          [chartType]="lineChartType"
+                                          [plugins]="lineChartPlugins">
+                                        </canvas>
+                                      </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <p class="display-7 font-weight-bold" *ngFor="let data of estadisticasData | keyvalue">
+                                            <span class="text-primary d-inline-block" *ngIf="data.key === 'activos'">Actualmente activos:{{data.value}}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+          </body>

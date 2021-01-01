@@ -3,16 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.muldev.appgestiongym.Clients.Infrastructure;
+package dev.muldev.appgestiongym.clients.infrastructure;
 
-import dev.muldev.appgestiongym.Clients.Domain.Client;
-import dev.muldev.appgestiongym.Clients.Domain.ClientMembership;
-import dev.muldev.appgestiongym.Clients.Domain.ServiceClient;
-import dev.muldev.appgestiongym.Clients.Infrastructure.Entities.ClientEntity;
-import dev.muldev.appgestiongym.Memberships.Infrastructure.MembershipEntity;
-import dev.muldev.appgestiongym.Prices.Domain.ServicePrices;
+import dev.muldev.appgestiongym.clients.domain.Client;
+import dev.muldev.appgestiongym.clients.domain.ClientMembership;
+import dev.muldev.appgestiongym.clients.domain.ServiceClient;
+import dev.muldev.appgestiongym.clients.infrastructure.entities.ClientEntity;
+import dev.muldev.appgestiongym.memberships.domain.ServiceMembership;
+import dev.muldev.appgestiongym.memberships.infrastructure.MembershipEntity;
+import dev.muldev.appgestiongym.prices.domain.ServicePrices;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -27,11 +30,13 @@ public class ServiceClientPostgre implements ServiceClient {
     private final ClientRepository repo;
     private final EntityManager em;
     private final ServicePrices serviceTarifas;
+    private final ServiceMembership serviceMembership;
 
-    public ServiceClientPostgre(ClientRepository repo, EntityManager em, ServicePrices serviceTarifas) {
+    public ServiceClientPostgre(ClientRepository repo, EntityManager em, ServicePrices serviceTarifas, ServiceMembership serviceMembership) {
         this.repo = repo;
         this.em = em;
         this.serviceTarifas = serviceTarifas;
+        this.serviceMembership = serviceMembership;
     }
 
     @Override
@@ -52,7 +57,8 @@ public class ServiceClientPostgre implements ServiceClient {
                 clientAux.setNombre(cliente.getNombreCliente() + " " + cliente.getApellidoCliente());
                 clientAux.setTelefono(cliente.getTelCliente());
                 clientAux.setFecha(m.getFechaAlta());
-                clientAux.setStatus(m.getEstado());
+
+                clientAux.setFechaAbonadoHasta(m.getFechaAbonadoHasta());
                 
                 //we get the description of the membership
                 clientAux.setTarifa(serviceTarifas.getById(m.getIdtarifa()).getDescripcion());
@@ -106,6 +112,64 @@ public class ServiceClientPostgre implements ServiceClient {
         catch(Exception e){
             return null;
         }
+    }
+
+    @Override
+    public Client getOne(int id) {
+        try{
+            ModelMapper modelMapper = new ModelMapper();
+            ClientEntity entity = repo.getOne(id);
+            Client client = modelMapper.map(entity, Client.class);
+            return client;
+        }
+        catch(Exception e){
+            return null;
+        }
+    }
+
+    @Override
+    public Boolean deleteById(int id) {
+        try{
+            if(serviceMembership.delByIdClient(id)) {
+                repo.deleteById(id);
+                return true;
+            }
+            return false;
+        }
+        catch(Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public Map<String, Integer> generateMapStatsByAgeRange() {
+        //map with the specified age ranges
+        int[] ageRanges = {16,30,45,60};
+        Map<String, Integer> map = new HashMap<>();
+        for(int i=0;i<ageRanges.length;i++) {
+            if(i == 3){
+                Long res;
+                int clients = 0;
+                //out of array, so max age (120)
+                Query q = em.createNamedQuery("ClientesGym.countByAge")
+                        .setParameter("minage", ageRanges[i])
+                        .setParameter("maxage", 120);
+                res = (Long) q.getSingleResult();
+                clients = res.intValue();
+                map.put("+60", clients);
+            }
+            else {
+                Long res;
+                int clients = 0;
+                Query q = em.createNamedQuery("ClientesGym.countByAge")
+                        .setParameter("minage", ageRanges[i])
+                        .setParameter("maxage", ageRanges[i + 1]-1);
+                res = (Long) q.getSingleResult();
+                clients = res.intValue();
+                map.put(""+ageRanges[i]+"-"+(ageRanges[i+1]), clients);
+            }
+        }
+        return map;
     }
 
 }

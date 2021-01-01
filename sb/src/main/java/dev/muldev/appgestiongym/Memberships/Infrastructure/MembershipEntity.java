@@ -1,4 +1,4 @@
-package dev.muldev.appgestiongym.Memberships.Infrastructure;
+package dev.muldev.appgestiongym.memberships.infrastructure;
 
 import lombok.Data;
 
@@ -15,12 +15,11 @@ import java.sql.Date;
         @NamedQuery(name = "MatriculasGym.findByIdcliente", query = "SELECT m FROM MembershipEntity m WHERE m.idcliente = :idcliente"),
         @NamedQuery(name = "MatriculasGym.findByIdtarifa", query = "SELECT m FROM MembershipEntity m WHERE m.idtarifa = :idtarifa"),
         @NamedQuery(name = "MatriculasGym.findByFechaAlta", query = "SELECT m FROM MembershipEntity m WHERE m.fechaAlta = :fechaAlta"),
-        @NamedQuery(name = "MatriculasGym.findByEstado", query = "SELECT m FROM MembershipEntity m WHERE m.estado = :estado"),
-        @NamedQuery(name = "MatriculasGym.cuentaActivos", query = "SELECT COUNT(*) FROM MembershipEntity m WHERE m.estado = true"),
         @NamedQuery(name = "MatriculasGym.orderFecha", query = "SELECT m FROM MembershipEntity m ORDER BY m.fechaAlta"),
         @NamedQuery(name = "MatriculasGym.selectPorMes", query = "SELECT COUNT(*) FROM MembershipEntity m WHERE extract(month from m.fechaAlta) = :mes"),
-
-})
+        @NamedQuery(name = "MatriculasGym.countActives", query = "SELECT COUNT(*) FROM MembershipEntity m WHERE m.fechaAbonadoHasta >= :fechaActual"),
+        @NamedQuery(name = "MatriculasGym.getAllActives", query = "SELECT m FROM MembershipEntity m WHERE m.fechaAbonadoHasta >= :fechaActual")
+        })
 public class MembershipEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,7 +38,7 @@ public class MembershipEntity implements Serializable {
     @Column(name = "fecha_alta")
     private Date fechaAlta;
 
-    @Column(name = "estado")
-    private Boolean estado;
+    @Column(name = "fecha_abonado_hasta")
+    private Date fechaAbonadoHasta;
 
 }

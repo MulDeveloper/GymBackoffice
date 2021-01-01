@@ -50,13 +50,13 @@
                                                 <td>{{cliente.telCliente}}</td>
                                                 <td>{{cliente.direccionCliente}}</td>
                                                 <td class="tdAction">
-                                                  <button type="button" name="button" class="btn btn-info "><i class="fas fa-eye"></i></button>
+                                                  <a [routerLink] = "['/membership', cliente.idMatricula]"><button type="button" name="button" class="btn btn-info"><i class="fas fa-eye"></i></button></a>
                                                 </td>
                                                 <td>
-                                                  <button type="button" name="button" class="btn btn-warning ml-2"><i class="fas fa-pencil-alt"></i></button>
+                                                  <button type="button" name="button" class="btn btn-warning ml-2" (click)="showModalEdit(editProfile, cliente)"><i class="fas fa-pencil-alt"></i></button>
                                                 </td>
                                                 <td>
-                                                  <button type="button" name="button" class="btn btn-danger ml-2" ><i class="fas fa-times-circle"></i></button>
+                                                  <button type="button" name="button" class="btn btn-danger ml-2" (click)="delete(cliente.idcliente, cliente.nombreCliente)"><i class="fas fa-times-circle"></i></button>
                                                 </td>
                                             </tr>
 
@@ -65,9 +65,74 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
               </div>
             </div>
+
+            <ng-template #editProfile let-modal>
+             <div class="modal-header">
+              <h5 class="modal-title" id="editProfile">Datos cliente</h5>
+              <button type="button" class="close" (click)="modal.dismiss()" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+              </button>
+             </div>
+
+             <div class="modal-body">
+              <form [formGroup]="editProfileGroup" (ngSubmit)="onSubmit()">
+                <input type="hidden" class="form-control" readonly formControlName="idcliente" id="idcliente">
+                <input type="hidden" class="form-control" readonly formControlName="idMatricula" id="idMatricula">
+               <div class="form-group row">
+                <label for="nombrePersonal" class="col-sm-4 col-form-label">Nombre</label>
+                <div class="col-sm-8">
+                 <input type="text" class="form-control" formControlName="nombreCliente" id="nombreCliente">
+                </div>
+               </div>
+               <div class="form-group row">
+                <label for="nombrePersonal" class="col-sm-4 col-form-label">Apellidos</label>
+                <div class="col-sm-8">
+                 <input type="text" class="form-control" formControlName="apellidoCliente" id="apellidoCliente">
+                </div>
+               </div>
+               <div class="form-group row">
+                <label for="nifPersonal" class="col-sm-4 col-form-label">NIF</label>
+                <div class="col-sm-8">
+                 <input type="text" class="form-control" readonly formControlName="nifCliente" id="nifCliente">
+                </div>
+               </div>
+               <div class="form-group row">
+                <label for="direccionPersonal" class="col-sm-4 col-form-label">Direccion</label>
+                <div class="col-sm-8">
+                 <input type="text" class="form-control" formControlName="direccionCliente" id="direccionCliente">
+                </div>
+               </div>
+               <div class="form-group row">
+                <label for="fechaNac" class="col-sm-4 col-form-label">Fecha de nacimiento:</label>
+                <div class="col-sm-8">
+                 <input type="text" class="form-control" readonly formControlName="fechaNacimiento" id="fechaNacimiento">
+                </div>
+               </div>
+               <div class="form-group row">
+                <label for="emailPersonal" class="col-sm-4 col-form-label">Email</label>
+                <div class="col-sm-8">
+                 <input type="email" class="form-control" formControlName="emailCliente" id="emailCliente">
+                </div>
+               </div>
+               <div class="form-group row">
+                <label for="sueldoBruto" class="col-sm-4 col-form-label">Tel cliente</label>
+                <div class="col-sm-8">
+                 <input type="number" class="form-control" formControlName="telCliente" id="telCliente">
+                </div>
+               </div>
+
+               <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+               </div>
+
+              </form>
+             </div>
+            </ng-template>
 
 
 </body>

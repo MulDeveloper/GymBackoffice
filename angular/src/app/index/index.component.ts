@@ -17,6 +17,7 @@ export class IndexComponent implements OnInit {
   lastUsers: Map<number, ClienteMatricula>;
   graphMap: Map<string, number>;
   graphMonth: Map <string, number>;
+  costs: number;
 
   // Pie
   public pieChartOptions: ChartOptions = {
@@ -73,7 +74,12 @@ export class IndexComponent implements OnInit {
         //asignamos
         lastUsers => this.lastUsers = lastUsers
       );
-    
+
+      this.service.getCost().subscribe(
+        costs => this.costs = costs
+      );
+
+
 
   }
 
@@ -97,11 +103,9 @@ export class IndexComponent implements OnInit {
       }
       if(key == 'FEBRERO'){
         this.array[1] = this.graphMonth[key];
-
       }
       if(key == 'MARZO'){
         this.array[2] = this.graphMonth[key];
-        console.log(this.array[2]);
       }
       if(key == 'ABRIL'){
         this.array[3] = this.graphMonth[key];
@@ -116,7 +120,6 @@ export class IndexComponent implements OnInit {
         this.array[6] = this.graphMonth[key];
       }
       if(key == 'AGOSTO'){
-        console.log(key, 'value: ', this.graphMonth[key]);
         this.array[7] = this.graphMonth[key];
       }
       if(key == 'SEPTIEMBRE'){

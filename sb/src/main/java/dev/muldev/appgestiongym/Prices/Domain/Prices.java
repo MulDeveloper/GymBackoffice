@@ -1,4 +1,4 @@
-package dev.muldev.appgestiongym.Prices.Domain;
+package dev.muldev.appgestiongym.prices.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

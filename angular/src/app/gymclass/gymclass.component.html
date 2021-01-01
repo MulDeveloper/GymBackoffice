@@ -1,0 +1,150 @@
+<app-menu></app-menu>
+<body>
+    <div class="dashboard-wrapper margin">
+      <div class="row text-center">
+<div class="col-md-4">
+  <div class="btn-group">
+    <div
+      class="btn btn-primary"
+      mwlCalendarPreviousView
+      [view]="view"
+      [(viewDate)]="viewDate"
+      (viewDateChange)="previousWeek()"
+    >
+      Semana anterior
+    </div>
+    <div
+      class="btn btn-outline-secondary"
+      mwlCalendarToday
+      [(viewDate)]="viewDate"
+      (viewDateChange)="thisWeek()"
+    >
+      Esta semana
+    </div>
+    <div
+      class="btn btn-primary"
+      mwlCalendarNextView
+      [view]="view"
+      [(viewDate)]="viewDate"
+      (viewDateChange)="nextWeek()">
+    Proxima
+    </div>
+  </div>
+</div>
+<div class="col-md-4">
+  <h3>{{ viewDate | calendarDate:(view + 'ViewTitle') }}</h3>
+</div>
+<div class="col-md-4">
+  <div class="btn-group">
+    <div class="btn btn-primary" (click)="copyWeek()" [class.active]="view === CalendarView.Week">
+      Copiar semana para la proxima
+    </div>
+  </div>
+</div>
+</div>
+<br />
+<div [ngSwitch]="view">
+<mwl-calendar-week-view
+  *ngSwitchCase="CalendarView.Week"
+  [dayStartHour]="8"
+  [viewDate]="viewDate"
+  (hourSegmentClicked)="clickedDate = $event.date; newClass(createEvent, gymclass)"
+  [hourSegments]="4"
+  weekStartsOn="1"
+  [events]="events"
+  [refresh]="refresh"
+>
+</mwl-calendar-week-view>
+</div>
+
+
+<ng-template #modalContent let-close="close">
+<div class="modal-header">
+  <h5 class="modal-title">Event action occurred</h5>
+  <button type="button" class="close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div>
+    Action:
+    <pre>{{ modalData?.action }}</pre>
+  </div>
+  <div>
+    Event:
+    <pre>{{ modalData?.event | json }}</pre>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-secondary" (click)="close()">
+    OK
+  </button>
+</div>
+</ng-template>
+
+<ng-template #createEvent let-modal>
+ <div class="modal-header">
+  <h5 class="modal-title">Nueva clase</h5>
+  <button type="button" class="close" (click)="modal.dismiss()" aria-label="Close">
+   <span aria-hidden="true">&times;</span>
+  </button>
+ </div>
+
+ <div class="modal-body">
+  <form [formGroup]="newEvent" (ngSubmit)="onSubmit()">
+   <div class="form-group row">
+    <label for="description" class="col-sm-4 col-form-label">Clase</label>
+    <div class="col-sm-8">
+      <select class="form-control" id="input-select"
+      formControlName="description" id="description">
+          <option *ngFor="let gymclass of gymclasses" [ngValue]="gymclass">{{gymclass}}</option>
+      </select>
+      </div>
+   </div>
+
+   <div class="form-group row">
+    <label for="staff" class="col-sm-4 col-form-label">Monitor</label>
+    <div class="col-sm-8">
+      <select class="form-control" id="input-select"
+      formControlName="staff" id="staff">
+          <option *ngFor="let s of staff" [value]="s.idpersonal">{{s.nombrePersonal}} {{s.apellidoPersonal}}</option>
+      </select>
+      </div>
+   </div>
+
+   <div class="form-group row">
+    <label for="duration" class="col-sm-4 col-form-label">Duracion</label>
+    <div class="col-sm-8">
+      <select class="form-control" id="input-select"
+      formControlName="duration" id="duration">
+          <option value="30">30</option>
+          <option value="45">45</option>
+          <option value="60">60</option>
+      </select>
+      </div>
+   </div>
+
+   <div class="form-group row">
+    <label for="intensity" class="col-sm-4 col-form-label">Intensidad</label>
+    <div class="col-sm-8">
+      <select class="form-control" id="input-select"
+      formControlName="intensity" id="intensity">
+          <option value="1">BAJA</option>
+          <option value="2">MEDIA</option>
+          <option value="3">ALTA</option>
+      </select>
+      </div>
+   </div>
+
+   <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cerrar</button>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+   </div>
+
+  </form>
+ </div>
+</ng-template>
+
+
+</div>
+</body>

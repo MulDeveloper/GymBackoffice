@@ -1,4 +1,4 @@
-package dev.muldev.appgestiongym.Memberships.Domain;
+package dev.muldev.appgestiongym.memberships.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,5 +14,5 @@ public class Membership {
     private Integer idcliente;
     private Integer idtarifa;
     private Date fechaAlta;
-    private Boolean estado;
+    private Date fechaAbonadoHasta;
 }

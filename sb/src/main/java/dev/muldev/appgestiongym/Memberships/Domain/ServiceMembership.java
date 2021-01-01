@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.muldev.appgestiongym.Memberships.Domain;
+package dev.muldev.appgestiongym.memberships.domain;
 
 import java.util.Map;
 
@@ -17,4 +17,6 @@ public interface ServiceMembership {
     int clientePorTarifa(int id);
     Map<String, Integer> retornaDatosMensuales();
     int add(Membership m);
+    boolean delByIdClient(int id);
+    Membership getOne(int id);
 }

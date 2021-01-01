@@ -9,5 +9,9 @@ export class ClientesGym {
   idMatricula: number;
   fechaNacimiento: Date;
 
+  public constructor(init?: Partial<ClientesGym>) {
+      Object.assign(this, init);
+  }
+
 
 }

@@ -11,18 +11,21 @@ export class IndexService {
 
   private endPointIndex: string = 'http://localhost:8081/api/index';
   private endPointLastUsers: string = 'http://localhost:8081/api/index/clientsLast';
-  private httpHeaders = new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Headers': 'Content-Type',
-  'Authorization': "Bearer "+localStorage.getItem('token')});
+  private endPointCosts: string = 'http://localhost:8081/api/incidents/costs';
 
 
   constructor(private http: HttpClient,private router: Router) { }
 
   getData(): Observable<Map<string, object>>{
-    return this.http.get<Map<string,object>>(this.endPointIndex, {headers: this.httpHeaders});
+    return this.http.get<Map<string,object>>(this.endPointIndex);
   }
 
   getClients(): Observable<Map<number, ClienteMatricula>>{
-    return this.http.get<Map<number,ClienteMatricula>>(this.endPointLastUsers, {headers: this.httpHeaders});
+    return this.http.get<Map<number,ClienteMatricula>>(this.endPointLastUsers);
+  }
+
+  getCost(): Observable<number>{
+    return this.http.get<number>(this.endPointCosts);
   }
 
 

@@ -19,7 +19,7 @@
                         </div>
                         <div class="busqueda" *ngIf="listaTemporal?.length != null">
                           <ul class="list-group" *ngFor="let cliente of listaTemporal">
-                            <li class="list-group-item"><a href="#">{{cliente.nombreCliente + ' ' +cliente.apellidoCliente}}</a></li>
+                            <a [routerLink] = "['/client', cliente.idcliente]"><li class="list-group-item">{{cliente.nombreCliente + ' ' +cliente.apellidoCliente}}</li></a>
                           </ul>
                         </div>
                     </li>
@@ -64,34 +64,11 @@
                             <div id="submenu-1" class="collapse submenu" style="">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Clases</a>
-                                        <!--<div id="submenu-1-2" class="collapse submenu" style="">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="index.html">E Commerce Dashboard</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="ecommerce-product.html">Product List</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="ecommerce-product-single.html">Product Single</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="ecommerce-product-checkout.html">Product Checkout</a>
-                                                </li>
-                                            </ul>
-                                        </div>-->
+                                        <a class="nav-link" [routerLink] = "['/statsclass']">Clases</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="dashboard-finance.html">Clientes</a>
+                                        <a class="nav-link" [routerLink] = "['/clientstats']">Clientes</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" [routerLink] = "['/personal']">Personal</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="dashboard-sales.html">Ventas</a>
-                                    </li>
-
                                 </ul>
                             </div>
                         </li>
@@ -100,10 +77,10 @@
                             <div id="submenu-4" class="collapse submenu" style="">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="pages/form-elements.html">Lista incidencias</a>
+                                        <a class="nav-link" [routerLink] = "['/listincidents']">Lista incidencias</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="pages/form-validation.html">Nueva incidencia</a>
+                                        <a class="nav-link" [routerLink] = "['/addincident']">Nueva incidencia</a>
                                     </li>
                                 </ul>
                             </div>
@@ -116,13 +93,13 @@
                                         <a class="nav-link" [routerLink] = "['/listclients']">Lista clientes</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="pages/form-validation.html">Nuevo cliente</a>
+                                        <a class="nav-link" [routerLink] = "['/addclient']">Nuevo cliente</a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fas fa-fw fa-table"></i>Clases</a>
+                            <a class="nav-link" [routerLink] = "['/classes']"><i class="fas fa-fw fa-table"></i>Clases</a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-user"></i>Personal</a>

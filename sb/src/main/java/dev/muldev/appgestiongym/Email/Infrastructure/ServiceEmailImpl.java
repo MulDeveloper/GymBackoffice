@@ -1,7 +1,7 @@
-package dev.muldev.appgestiongym.Email.Infrastructure;
+package dev.muldev.appgestiongym.email.infrastructure;
 
-import dev.muldev.appgestiongym.Email.Domain.EmailValue;
-import dev.muldev.appgestiongym.Email.Domain.ServiceEmail;
+import dev.muldev.appgestiongym.email.domain.EmailValue;
+import dev.muldev.appgestiongym.email.domain.ServiceEmail;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;

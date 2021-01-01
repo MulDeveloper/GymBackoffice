@@ -1,5 +1,5 @@
 
-package dev.muldev.appgestiongym.Staff.Domain;
+package dev.muldev.appgestiongym.staff.domain;
 
 import java.util.List;
 
@@ -14,4 +14,5 @@ public interface ServiceStaff {
     List<Staff> listStaff();
     boolean delById(int id);
     Staff getByUsername(String username);
+    List<Staff> getStaffWithRole(String role);
 }

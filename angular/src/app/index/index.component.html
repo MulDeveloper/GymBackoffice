@@ -41,7 +41,7 @@
                             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
                                 <div class="card border-3 border-top border-top-primary">
                                     <div class="card-body">
-                                        <h5 class="text-muted">Facturacion</h5>
+                                        <h5 class="text-muted">Facturacion este mes</h5>
                                         <div class="metric-value d-inline-block" *ngFor="let data of estadisticasData | keyvalue">
                                             <h1 class="mb-1" *ngIf="data.key === 'facturacion'">{{data.value}}€</h1>
                                         </div>
@@ -57,9 +57,9 @@
                             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
                                 <div class="card border-3 border-top border-top-primary">
                                     <div class="card-body">
-                                        <h5 class="text-muted">Gastos infraestructura</h5>
+                                        <h5 class="text-muted">Gastos infraestructura este mes</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">0</h1>
+                                            <h1 class="mb-1">{{costs}}€</h1>
                                         </div>
                                     </div>
                                 </div>
@@ -101,8 +101,8 @@
                                                 <thead class="bg-light">
                                                     <tr class="border-0">
                                                         <th class="border-0">Fecha alta</th>
+                                                        <th class="border-0">Abonado hasta</th>
                                                         <th class="border-0">Nombre cliente</th>
-                                                        <th class="border-0">Estado</th>
                                                         <th class="border-0">Tarifa</th>
                                                         <th class="border-0">Telefono</th>
                                                     </tr>
@@ -114,15 +114,7 @@
                                                           <td *ngIf="matricula.key === 'tarifa'">{{matricula.value}}</td>
                                                           <td *ngIf="matricula.key === 'fecha'">{{matricula.value}}</td>
                                                           <td *ngIf="matricula.key === 'telefono'">{{matricula.value}}</td>
-                                                          <td *ngIf="matricula.key === 'status'">
-                                                            <div *ngIf="matricula.value == true; else noPagado">
-                                                              <span class="badge-dot badge-success mr-1"></span>PAGADO
-                                                            </div>
-                                                            <ng-template #noPagado>
-                                                              <span class="badge-dot badge-danger mr-1"></span>NO PAGADO
-                                                            </ng-template>
-                                                          </td>
-
+                                                          <td *ngIf="matricula.key === 'fechaAbonadoHasta'">{{matricula.value}}</td>
                                                         </tr>
 
                                                     </div>

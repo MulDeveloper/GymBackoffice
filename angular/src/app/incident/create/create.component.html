@@ -1,0 +1,65 @@
+<app-menu></app-menu>
+<body>
+    <div class="dashboard-wrapper">
+        <div class="container-fluid dashboard-content">
+                <div class="row">
+                    <div class="col-xl-10">
+                        <div class="page-section" id="overview">
+
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h2>Nueva incidencia</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="card">
+                                    <h5 class="card-header">Informacion</h5>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="inputText1" class="col-form-label">Fecha</label>
+                                                <input id="inputText1" type="date" class="form-control" [(ngModel)]="incident.dateIncident" name="dateIncident" #dateIncident="ngModel" [ngModelOptions]="{standalone: true}" required>
+                                                <div class="alert alert-danger" *ngIf="dateIncident.invalid && (dateIncident.dirty || dateIncident.touched)">
+                                                  <div *ngIf="dateIncident.errors.required">
+                                                    Se requiere fecha
+                                                  </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">Descripcion</label>
+                                                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                                    [(ngModel)]="incident.description" name="description" #description="ngModel" [ngModelOptions]="{standalone: true}" required
+                                                  ></textarea>
+                                                <div class="alert alert-danger" *ngIf="description.invalid && (description.dirty || description.touched)">
+                                                  <div *ngIf="description.errors.required">
+                                                    Se requiere una descripcion
+                                                  </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Coste</label>
+                                                <input id="inputText3" type="number" class="form-control"
+                                                [(ngModel)]="incident.cost" name="cost" [ngModelOptions]="{standalone: true}" required>
+                                            </div>
+                                            <button class="btn btn-rounded btn-success form-btn" (click)="create()">Guardar</button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end footer -->
+            <!-- ============================================================== -->
+        </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+</body>

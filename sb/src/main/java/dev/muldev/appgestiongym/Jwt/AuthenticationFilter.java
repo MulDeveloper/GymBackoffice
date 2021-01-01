@@ -1,7 +1,7 @@
-package dev.muldev.appgestiongym.Jwt;
+package dev.muldev.appgestiongym.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.muldev.appgestiongym.Login.Domain.UserLogin;
+import dev.muldev.appgestiongym.login.domain.UserLogin;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationManager;

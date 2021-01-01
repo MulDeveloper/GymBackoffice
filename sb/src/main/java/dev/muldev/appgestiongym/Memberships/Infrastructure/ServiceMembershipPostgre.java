@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.muldev.appgestiongym.Memberships.Infrastructure;
+package dev.muldev.appgestiongym.memberships.infrastructure;
 
-import dev.muldev.appgestiongym.Memberships.Domain.Membership;
-import dev.muldev.appgestiongym.Memberships.Domain.ServiceMembership;
-import dev.muldev.appgestiongym.Prices.Domain.Prices;
-import dev.muldev.appgestiongym.Prices.Domain.ServicePrices;
+import dev.muldev.appgestiongym.memberships.domain.Membership;
+import dev.muldev.appgestiongym.memberships.domain.ServiceMembership;
+import dev.muldev.appgestiongym.prices.domain.ServicePrices;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +34,8 @@ public class ServiceMembershipPostgre implements ServiceMembership {
     @Override
     public int totalClientesActivos() {
         try{
-            Query q = em.createNamedQuery("MatriculasGym.cuentaActivos");
+            Query q = em.createNamedQuery("MatriculasGym.countActives")
+                    .setParameter("fechaActual",java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
             return Integer.parseInt(q.getSingleResult().toString());
         }
         catch(NoResultException e){
@@ -46,18 +46,19 @@ public class ServiceMembershipPostgre implements ServiceMembership {
     @Override
     public Double totalFacturacion() {
         Double total = 0.0;
-        //obtenemos todas las matriculas activas y devolvemos un double con el total de facturacion
+        //we get all the memberships that there are payed
         List <MembershipEntity> matriculasActivas;
         try{
-            Query q = em.createNamedQuery("MatriculasGym.findByEstado").setParameter("estado", true);
+            Query q = em.createNamedQuery("MatriculasGym.getAllActives")
+                    .setParameter("fechaActual",java.sql.Timestamp.valueOf(java.time.LocalDateTime.now()));
             matriculasActivas = q.getResultList();
 
-            
             for(MembershipEntity m: matriculasActivas){
                 total += servicePrices.getPrice(m.getIdtarifa());
             }
-            
+
             return total;
+
             
         }
         catch(NoResultException e){
@@ -133,6 +134,25 @@ public class ServiceMembershipPostgre implements ServiceMembership {
     public int add(Membership m) {
         ModelMapper modelMapper = new ModelMapper();
         return repo.save(modelMapper.map(m, MembershipEntity.class)).getIdmatricula();
+    }
+
+    @Override
+    public boolean delByIdClient(int id) {
+        try{
+            Query q = em.createNamedQuery("MatriculasGym.findByIdcliente").setParameter("idcliente", id);
+            MembershipEntity entity = (MembershipEntity) q.getSingleResult();
+            repo.deleteById(entity.getIdmatricula());
+            return true;
+        }
+        catch(NoResultException e){
+            return false;
+        }
+    }
+
+    @Override
+    public Membership getOne(int id) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(repo.getOne(id), Membership.class);
     }
 
 

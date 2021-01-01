@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.muldev.appgestiongym.Prices.Infrastructure;
+package dev.muldev.appgestiongym.prices.infrastructure;
 
-import dev.muldev.appgestiongym.Prices.Infrastructure.Entities.PricesEntity;
+import dev.muldev.appgestiongym.prices.infrastructure.Entities.PricesEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.muldev.appgestiongym.Prices.Infrastructure;
+package dev.muldev.appgestiongym.prices.infrastructure;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import dev.muldev.appgestiongym.Prices.Domain.Prices;
-import dev.muldev.appgestiongym.Prices.Domain.ServicePrices;
+import dev.muldev.appgestiongym.prices.domain.Prices;
+import dev.muldev.appgestiongym.prices.domain.ServicePrices;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

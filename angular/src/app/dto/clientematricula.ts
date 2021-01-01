@@ -4,6 +4,6 @@ export class ClienteMatricula {
   tarifa: string;
   fecha: Date;
   telefono: number;
-  status: boolean;
+  fechaAbonadoHasta: Date;
 
 }

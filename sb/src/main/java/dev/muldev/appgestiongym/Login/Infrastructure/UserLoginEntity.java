@@ -1,4 +1,4 @@
-package dev.muldev.appgestiongym.Login.Infrastructure;
+package dev.muldev.appgestiongym.login.infrastructure;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,7 +1,7 @@
-package dev.muldev.appgestiongym.Login.Infrastructure;
+package dev.muldev.appgestiongym.login.infrastructure;
 
-import dev.muldev.appgestiongym.Login.Domain.ServiceUserLogin;
-import dev.muldev.appgestiongym.Login.Domain.UserLogin;
+import dev.muldev.appgestiongym.login.domain.ServiceUserLogin;
+import dev.muldev.appgestiongym.login.domain.UserLogin;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

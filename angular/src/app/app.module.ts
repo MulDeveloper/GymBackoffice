@@ -16,16 +16,43 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditpersonalComponent } from './personal/editpersonal/editpersonal.component';
 import { EditpassComponent } from './personal/editpersonal/editpass/editpass.component';
 import { ListclientComponent } from './cliente/listclient/listclient.component';
+import { AddclientComponent } from './cliente/addclient/addclient.component';
+import { MembershipComponent } from './membership/membership.component';
+import { ShowclientComponent } from './cliente/showclient/showclient.component';
+import { ListincidentsComponent } from './incident/listincidents/listincidents.component';
+import { CreateComponent } from './incident/create/create.component';
+
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {AuthInterceptor} from './interceptor/AuthInterceptor';
+
+import {AuthGuard} from './auth.guard';
+import { GymclassComponent } from './gymclass/gymclass.component';
+
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { DatePipe } from '@angular/common';
+import { ClientstatsComponent } from './clientstats/clientstats.component';
+import { StatsclassComponent } from './statsclass/statsclass.component';
 
 const routes: Routes = [
+
   {path: '', redirectTo:'/login', pathMatch:'full'},
   {path: 'login', component: LoginComponent},
-  {path: 'index', component: IndexComponent},
-  {path: 'altapersonal', component: PersonalComponent},
-  {path: 'listapersonal', component: ListapersonalComponent},
-  {path: 'editpersonal', component: EditpersonalComponent},
-  {path: 'editpass', component: EditpassComponent},
-  {path: 'listclients', component: ListclientComponent}
+  {path: 'index', component: IndexComponent, canActivate: [AuthGuard]},
+  {path: 'altapersonal', component: PersonalComponent, canActivate: [AuthGuard]},
+  {path: 'listapersonal', component: ListapersonalComponent, canActivate: [AuthGuard]},
+  {path: 'editpersonal', component: EditpersonalComponent, canActivate: [AuthGuard]},
+  {path: 'editpass', component: EditpassComponent, canActivate: [AuthGuard]},
+  {path: 'listclients', component: ListclientComponent, canActivate: [AuthGuard]},
+  {path: 'addclient', component: AddclientComponent, canActivate: [AuthGuard]},
+  {path: 'addincident', component: CreateComponent, canActivate: [AuthGuard]},
+  {path: 'membership/:id', component: MembershipComponent, canActivate: [AuthGuard]},
+  {path: 'client/:id', component: ShowclientComponent, canActivate: [AuthGuard]},
+  {path: 'listincidents', component: ListincidentsComponent, canActivate: [AuthGuard]},
+  {path: 'classes', component: GymclassComponent, canActivate: [AuthGuard]},
+  {path: 'clientstats', component: ClientstatsComponent, canActivate: [AuthGuard]},
+  {path: 'statsclass', component: StatsclassComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
@@ -38,7 +65,15 @@ const routes: Routes = [
     ListapersonalComponent,
     EditpersonalComponent,
     EditpassComponent,
-    ListclientComponent
+    ListclientComponent,
+    AddclientComponent,
+    MembershipComponent,
+    ShowclientComponent,
+    ListincidentsComponent,
+    CreateComponent,
+    GymclassComponent,
+    ClientstatsComponent,
+    StatsclassComponent
   ],
   imports: [
     BrowserModule,
@@ -47,10 +82,21 @@ const routes: Routes = [
     HttpClientModule,
     ChartsModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
 
   ],
-  providers: [],
+  providers: [
+    DatePipe,
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthInterceptor,
+        multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

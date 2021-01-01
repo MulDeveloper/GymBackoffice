@@ -1,4 +1,4 @@
-package dev.muldev.appgestiongym.Login.Domain;
+package dev.muldev.appgestiongym.login.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

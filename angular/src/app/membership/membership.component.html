@@ -1,0 +1,86 @@
+<app-menu></app-menu>
+<body>
+    <div class="dashboard-wrapper">
+        <div class="container-fluid dashboard-content">
+                <div class="row">
+                    <div class="col-xl-10">
+                        <!-- ============================================================== -->
+                        <!-- end pageheader  -->
+                        <!-- ============================================================== -->
+                        <div class="page-section" id="overview">
+                            <!-- ============================================================== -->
+                            <!-- overview  -->
+                            <!-- ============================================================== -->
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h2>Matricula</h2>
+                                </div>
+                            </div>
+                            <!-- ============================================================== -->
+                            <!-- end overview  -->
+                            <!-- ============================================================== -->
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- form basico -->
+                        <!-- ============================================================== -->
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="card">
+                                    <h5 class="card-header">Datos</h5>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="inputText9" class="col-form-label">Fecha alta</label>
+                                                <input id="inputText9" type="date" class="form-control"
+                                                [(ngModel)]="membership.fechaAlta" name="fechaAlta" #fechaAlta="ngModel" [ngModelOptions]="{standalone: true}" readonly required>
+                                                <div class="alert alert-danger" *ngIf="fechaAlta.invalid && (fechaAlta.dirty || fechaAlta.touched)">
+                                                  <div *ngIf="fechaAlta.errors.required">
+                                                    Se requiere fecha alta
+                                                  </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputText10" class="col-form-label">Fecha pagado hasta</label>
+                                                <input id="inputText10" type="date" class="form-control"
+                                                [(ngModel)]="membership.fechaAbonadoHasta" name="fechaAbonadoHasta" [ngModelOptions]="{standalone: true}" readonly required>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="input-select-tarifa">Tarifa</label>
+                                                <select class="form-control" id="input-select-tarifa"
+                                                [(ngModel)]="membership.idtarifa" name="idtarifa" [ngModelOptions]="{standalone: true}">
+                                                <option *ngFor="let t of prices" [value]="t.idtarifa" [selected]="t.idtarifa === membership.idtarifa">
+                                                    {{t.descripcion}} - {{t.totalIva}}
+                                                </option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="input-select">Pagar</label>
+                                                <select class="form-control" id="input-select"
+                                                [(ngModel)]="months" name="months" [ngModelOptions]="{standalone: true}">
+                                                    <option value="1">1 MES</option>
+                                                    <option value="3">3 MESES</option>
+                                                    <option value="12">1 AÑO</option>
+                                                </select>
+                                            </div>
+
+                                            <button class="btn btn-rounded btn-success form-btn" (click)="save()">Guardar</button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end footer -->
+            <!-- ============================================================== -->
+        </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+</body>

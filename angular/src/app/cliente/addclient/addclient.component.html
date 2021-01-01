@@ -1,0 +1,127 @@
+<app-menu></app-menu>
+<body>
+    <div class="dashboard-wrapper">
+        <div class="container-fluid dashboard-content">
+                <div class="row">
+                    <div class="col-xl-10">
+                        <!-- ============================================================== -->
+                        <!-- end pageheader  -->
+                        <!-- ============================================================== -->
+                        <div class="page-section" id="overview">
+                            <!-- ============================================================== -->
+                            <!-- overview  -->
+                            <!-- ============================================================== -->
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h2>Alta cliente</h2>
+                                </div>
+                            </div>
+                            <!-- ============================================================== -->
+                            <!-- end overview  -->
+                            <!-- ============================================================== -->
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- form basico -->
+                        <!-- ============================================================== -->
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="card">
+                                    <h5 class="card-header">Datos cliente</h5>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Nombre</label>
+                                                <input id="inputText3" type="text" class="form-control" [(ngModel)]="client.nombreCliente" name="nombre" #nombre="ngModel" [ngModelOptions]="{standalone: true}" required>
+                                                <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                                                  <div *ngIf="nombre.errors.required">
+                                                    Se requiere nombre
+                                                  </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputText4" class="col-form-label">Apellido</label>
+                                                <input id="inputText4" type="text" class="form-control" [(ngModel)]="client.apellidoCliente" name="apellido" #apellido="ngModel" [ngModelOptions]="{standalone: true}" required>
+                                                <div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+                                                  <div *ngIf="apellido.errors.required">
+                                                    Se requiere apellidos
+                                                  </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputText5" class="col-form-label">NIF</label>
+                                                <input id="inputText5" type="text" class="form-control" [(ngModel)]="client.nifCliente" name="nif" #nif="ngModel" [ngModelOptions]="{standalone: true}" required>
+                                                <div class="alert alert-danger" *ngIf="nif.invalid && (nif.dirty || nif.touched)">
+                                                  <div *ngIf="nif.errors.required">
+                                                    Se requiere NIF
+                                                  </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputText10" class="col-form-label">Direccion</label>
+                                                <input id="inputText10" type="text" class="form-control" [(ngModel)]="client.direccionCliente" name="direccion" #direccion="ngModel" [ngModelOptions]="{standalone: true}" required>
+                                                <div class="alert alert-danger" *ngIf="direccion.invalid && (direccion.dirty || direccion.touched)">
+                                                  <div *ngIf="direccion.errors.required">
+                                                    Se requiere direccion
+                                                  </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail" class="col-form-label">Email</label>
+                                                <input id="inputEmail" type="email" placeholder="name@example.com" class="form-control"
+                                                [(ngModel)]="client.emailCliente" name="email" #email="ngModel" [ngModelOptions]="{standalone: true}" required email>
+                                                <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+                                                  <div *ngIf="email.errors.required">
+                                                    Se requiere E-mail
+                                                  </div>
+                                                  <div *ngIf="email.errors.email">
+                                                    Formato de email no es correcto
+                                                  </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputText6" class="col-form-label">Telefono</label>
+                                                <input id="inputText6" type="number" class="form-control"
+                                                [(ngModel)]="client.telCliente" name="telefono" #telefono="ngModel" [ngModelOptions]="{standalone: true}" required>
+                                                <div class="alert alert-danger" *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
+                                                  <div *ngIf="telefono.errors.required">
+                                                    Se requiere Telefono
+                                                  </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputText8" class="col-form-label">Fecha nacimiento</label>
+                                                <input id="inputText8" type="date" class="form-control"
+                                                [(ngModel)]="client.fechaNacimiento" name="fechaNac" #fechaNac="ngModel" [ngModelOptions]="{standalone: true}" required>
+                                                <div class="alert alert-danger" *ngIf="fechaNac.invalid && (fechaNac.dirty || fechaNac.touched)">
+                                                  <div *ngIf="fechaNac.errors.required">
+                                                    Se requiere fecha nacimiento
+                                                  </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="input-select">Tarifa</label>
+                                                <select class="form-control" id="input-select" [(ngModel)]="idSelected" [ngModelOptions]="{standalone: true}">
+                                                <option *ngFor="let t of tarifas" [value]="t.idtarifa" [selected]="t.idtarifa === 5">
+                                                    {{t.descripcion}} - {{t.totalIva}}
+                                                </option>
+                                                </select>
+                                            </div>
+                                            <button class="btn btn-rounded btn-success form-btn" (click)="create()">Guardar</button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end footer -->
+            <!-- ============================================================== -->
+        </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+</body>

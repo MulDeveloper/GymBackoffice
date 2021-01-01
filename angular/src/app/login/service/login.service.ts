@@ -34,5 +34,19 @@ export class LoginService {
         );
   }
 
+  private setSession(){
+    //expiration
+
+  }
+
+
+  public isLogged(): boolean{
+    if (localStorage.getItem('token') != null){
+      return true;
+      //TODO check valid jwt token
+    }
+    return false;
+  }
+
 
   }
